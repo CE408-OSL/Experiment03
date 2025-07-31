@@ -11,7 +11,7 @@
 `ls`
 را می‌زنیم و لیست فایل‌ها و پوشه‌های موجود در این دایرکتوری را مشاهده می‌کنیم:
 
-![cd /proc ; ls](image.png)
+![cd /proc ; ls](figs/image.png)
 
 ## مشاهده محتویات یک فایل در شاخه `proc/`
 
@@ -29,7 +29,7 @@ cat uptime
 - فایل `partitions` هم ساختار پارتیشن‌بندی سیستم را نشان می‌دهد.
 - فایل `uptime` مدت زمان بالا آمدن سیستم را نشان می‌دهد. عدد دوم هم نشان دهنده مدت زمان idle بودن پردازنده است.
 
-![some files in /proc](image-1.png)
+![some files in /proc](figs/image-1.png)
 
 حال داخل فایل write.cpp یک کد با زبان cpp پیاده‌سازی می‌کنیم که با هر اجرا، محتویات فایل `proc/version/` را داخل یک فایل به نام `LinuxVersion.txt` در دایرکتوری فعلی می‌نویسد.
 
@@ -66,7 +66,7 @@ int main() {
 تلاش می‌کنیم تا داخل فایل `proc/version/` متنی را بنویسیم. می‌بینیم که حتی با دسترسی `root`
 هم نمی‌توان داخل این فایل چیزی نوشت.
 
-![write on version file](image-2.png)
+![write on version file](figs/image-2.png)
 
 ## مشاهده‌ی وضعیت پردازه‌ها
 
@@ -84,33 +84,33 @@ ls
 `exe`
 نیازمند دسترسی root هستیم.
 
-![ls in /proc/1](image-3.png)
+![ls in /proc/1](figs/image-3.png)
 
 مشاهده اطلاعات مربوط به تعدادی از فایل‌ها:
 
 - **environ**: این فایل حاوی متغیرهای محیطی پردازه مورد نظر است.
 
-![environ](image-4.png)
+![environ](figs/image-4.png)
 
 - **stat**: این فایل اطلاعات و وضعیت پردازه مورد نظر را نشان می‌دهد.
 
-![stat](image-5.png)
+![stat](figs/image-5.png)
 
 - **statm**: این فایل حاوی اطلاعات و وضعیت حافظه‌ی مرتبط با پردازه‌ی مورد نظر است.
 
-![statm](image-6.png)
+![statm](figs/image-6.png)
 
 - **status**: این فایل اطلاعات دو فایل گذشته را به صورت human readable نشان می‌دهد.
 
-![status](image-7.png)
+![status](figs/image-7.png)
 
 - **cwd** (current work directory): این یک لینک به دایرکتوری اجرای پردازه مورد نظر است.
 
-![cwd](image-8.png)
+![cwd](figs/image-8.png)
 
 - **cmdline**: دستور کاملی که فرایند با آن اجرا شده را نشان می‌دهد.
 
-![cmdline](image-9.png)
+![cmdline](figs/image-9.png)
 
 - **exe**: این یک لینک به فایل اجرایی اصلی فرایند است.
 
@@ -191,7 +191,7 @@ tr '\0' '\n' < "$proc_dir/environ" 2>/dev/null
 
 سپس دسترسی اجرا به آن می‌دهیم و شماره پردازه را در آرگومان اول به آن می‌دهیم:
 
-![info of proccess](image-10.png)
+![info of proccess](figs/image-10.png)
 
 بعضی از اطلاعات نیازمند دسترسی sudo هستند!
 
@@ -203,7 +203,7 @@ tr '\0' '\n' < "$proc_dir/environ" 2>/dev/null
 `ls`
 را اجرا می‌کنیم:
 
-![ls in /proc](image-11.png)
+![ls in /proc](figs/image-11.png)
 
 سپس فایل‌های زیر را بررسی می‌کنیم:
 
@@ -213,36 +213,36 @@ tr '\0' '\n' < "$proc_dir/environ" 2>/dev/null
 - **version**: در قسمت قبل بررسی شد.
 - **cpuinfo**: در این فایل اطلاعات مربوط به هر cpu core نوشته شده است:
 
-![cpuinfo](image-12.png)
+![cpuinfo](figs/image-12.png)
 
 - **filesystems**: در این فایل لیست تمامی فایل سیستم‌هایی که کرنل از آن‌ها پشتیبانی می‌کند وجود دارد:
 
-![filesystems](image-13.png)
+![filesystems](figs/image-13.png)
 
 - **ioports**: در این فایل لیست پورت‌های مربوط به I/O سیستم وجود دارد:
 
-![ioports](image-14.png)
+![ioports](figs/image-14.png)
 
 - **interrupts**: لیست وقفه‌هایی که هر یک از دستگاه‌های IO روی پردازنده‌هااعمال کرده است.
 
-![interrupts](image-15.png)
+![interrupts](figs/image-15.png)
 
 
 - **loadavg**: این فایل اطلاعاتی درباره‌ی وضعیت بار سیستم ارائه می‌دهد. سه عدد اول این فایل، میانگین تعداد فرایندهای آماده‌ی اجرا را در بازه‌های زمانی ۱، ۵ و ۱۵ دقیقه‌ی گذشته نشان می‌دهند. این اعداد نشان می‌دهند که در طول این بازه‌ها، به‌طور متوسط چند فرایند در انتظار پردازش بوده‌اند. عدد چهارم، نسبت تعداد فرایندهای فعال به کل فرایندهای موجود در سیستم را نمایش می‌دهد، و عدد آخر، PID آخرین فرایند ایجادشده در سیستم است.
 
-![loadavg](image-16.png)
+![loadavg](figs/image-16.png)
 
 - **net**: این یک پوشه است که در آن تعدادی فایل در مورد وضعیت و تنظیمات شبکه سیستم وجود دارد.
 
-![ls net](image-17.png)
+![ls net](figs/image-17.png)
 
 - **mounts**: در این فایل لیست mount های مربوط به namespace های پردازه فعلی وجود دارد.
 
-![mounts](image-18.png)
+![mounts](figs/image-18.png)
 
 - **meminfo**: اطلاعات مربوط به مصرف حافطه‌ی کل سیستم در این فایل نشان داده می‌شود:
 
-![meminfo](image-19.png)
+![meminfo](figs/image-19.png)
 
 
 در ادامه اسکریپتی می‌نویسیم تا مدل پردازنده، فرکانس و حافظه نهان آن را چاپ کند:
@@ -261,7 +261,7 @@ echo "$cache_size"
 
 در نهایت به فایل دسترسی اجرا می‌دهیم و آن را اجرا می‌کنیم:
 
-![cpu details](image-20.png)
+![cpu details](figs/image-20.png)
 
 
 در ادامه یک اسکریپت دیگر می‌نویسیم که مقدار حافظه کل (total)، استفاده‌شده (used) و آزاد (free) را از فایل `proc/meminfo/` استخراج کرده و نمایش می‌دهد:
@@ -280,7 +280,7 @@ echo "Free Memory:   ${mem_free} kB"
 ```
 در نهایت به فایل دسترسی اجرا می‌دهیم و آن را اجرا می‌کنیم:
 
-![meminfo](image-21.png)
+![meminfo](figs/image-21.png)
 
 
 ### تمرین ۲
@@ -299,7 +299,7 @@ echo "Free Memory:   ${mem_free} kB"
 
 نتیجه:
 
-![sys/kernel](image-22.png)
+![sys/kernel](figs/image-22.png)
 
 #### بخش دوم
  
@@ -314,7 +314,7 @@ ls -l /proc/self
 ```
 و با نتیجه زیر رو به رو می‌شویم که پردازه فعلی را نشان می‌دهد:
 
-![self](image-23.png)
+![self](figs/image-23.png)
 
 این قابلیت برای برنامه‌نویسان و اسکریپت‌ها، این امکان را فراهم می‌کند که بدون دانستن یا محاسبه PID ، به اطلاعات پردازه خودشان دسترسی داشته باشند.
 
